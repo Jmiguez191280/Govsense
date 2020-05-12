@@ -1,0 +1,99 @@
+<td>
+    <section id="main-section" class="text-center" name="home">
+        <!-- Services Section -->
+        <div id="services-section" class="text-center">
+            <div class="container">
+                <div class="section-title center">
+                    <h2> Code Enforcement Case Search </h2>
+                    <div class="clearfix"></div>
+                    <p>Here are a few tips on searching... </p>
+                    <hr>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> You can search by a single field, or use multiple fields to narrow your results.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> Clicking the Search Button will provide a list of all Cases that match your criteria. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> For text searches (e.g. Case Number & Address), you can type partial information if necessary. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> After clicking search, you can export a list of your results by clicking the Export CSV button.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-section" class="text-center">
+            <div class="container">
+                <div class="col-md-8 col-md-offset-2">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="case-number"> Case Number </label>
+                                    <input type="text" id="case-number" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="address"> Address </label>
+                                    <input type="text" id="address" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="case-type"> Case Type </label>
+                                    <input type="text" id="case-type" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="case-status"> Case Status </label>
+                                    <input type="text" id="case-status" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="casedatefrom"> Case Date (Range) </label>
+                                    <input type="date" id="casedatefrom" name="casedatefrom" class="form-control2">
+                                    <input type="date" id="casedateto" name="casedateto" class="form-control2">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="casedatefrom"> Case Date (Range) </label>
+                                    <input type="date" id="hearingdatefrom" name="hearingdatefrom" class="form-control2" placeholder="1/1/2020">
+                                    <input type="date" id="hearingdateto" name="hearingdateto" class="form-control2" placeholder="1/1/2020">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="formbutton" type="" onclick="submitForm(event);" class="btn btn-default"><i class="fa fa-fw fa-search"></i> Search </button>
+                        <div class="form-group">
+                            <div name="message" id="results-container" class="form-control">
+                                <h3>Search Results Will Display Here</h3>
+                            </div>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div id="success"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</td>

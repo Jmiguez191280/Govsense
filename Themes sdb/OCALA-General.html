@@ -1,0 +1,196 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/apple-touch-icon-114x114.png">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/css/bootstrap.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap" rel="stylesheet">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/css/style.css">
+<link rel="stylesheet" type="text/css" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/css/prettyPhoto.css">
+
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script type="text/javascript" src="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/js/modernizr.custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<!-- START SUBMIT FORM search -->
+<script>
+    function submitForm() {
+
+        debugger;
+        var casenumber = document.getElementById('case-number').value;
+        var addrs = document.getElementById('address').value;
+        var casetype = document.getElementById('case-type').value;
+        var casestatus = document.getElementById('case-status').value;
+        var casedatefrom = document.getElementById('casedatefrom').value;
+        var casedateto = document.getElementById('casedateto').value;
+        var casedateto = document.getElementById('casedateto').value;
+        var hearingdatefrom = document.getElementById('hearingdatefrom').value;
+        var hearingdateto = document.getElementById('hearingdateto').value;
+
+        var objParams = {
+            hearingdatefrom: hearingdatefrom,
+            addrs: addrs,
+            h: '386d0b815585bdca834a',
+            script: "216",
+            hearingdateto: hearingdateto,
+            deploy: "1",
+            casenumber: casenumber,
+            casedatefrom: casedatefrom,
+            compid: "4778042",
+            casetype: casetype,
+            casedateto: casedateto,
+            casestatus: casestatus
+        };
+
+        var params = JSON.stringify(objParams)
+
+        jQuery.ajax({
+                method: "GET",
+                url: "/app/site/hosting/scriptlet.nl?script=216&deploy=1&compid=4778042&h=386d0b815585bdca834a&parameters=" + params,
+                dataType: "json",
+                cache: false,
+                async: true
+
+            })
+            .done(function(msg) {
+                if (msg) {
+                    debugger;
+                    renderResult(msg);
+                }
+            })
+    }
+
+    function renderResult(data) {
+
+        var hasresults = [];
+        if (data) {
+
+            hasresults.push(data);
+            var results = Handlebars.compile($("#casesResults").html());
+            $("#results-container").html(results(data));
+        }
+    }
+</script>
+
+<script type="text/x-handlebars-template" id="casesResults">
+    {{log this}} {{#if this}} {{log cases}}
+
+    <div class="results_container">
+        <div class="row">
+            <!--div class="col-md-12"-->
+            <div class="table-responsive">
+                <table id="resultsTable" border="0" cellspacing="0" cellpadding="2" class="uir_list_filter_bar uir_list_top_button_bar" role="presentation">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button type="button" id="col" style="background-color:green;color:white;width:115px;height:40px;font-size:18px;" class="btn btn-secondary black-background white" onclick="exportTableToCSV('caseresults.csv')"><i class="fa fa-fw fa-file-excel-o"></i> Export
+                                            </button>
+                            </td>
+                            <td align="right" class="smalltextnolink">&nbsp;Total: {{cases.length}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" id="results">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Case Number</th>
+                            <th>Address</th>
+                            <th>Case Type</th>
+                            <th>Case Staus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if cases}} {{#each cases}}
+                        <tr>
+                            <td><a href="https://4778042.extforms.netsuite.com/app/site/hosting/scriptlet.nl?script=217&deploy=1&compid=4778042&h=53d12f20992a30777477&id={{caseid}}">Case
+                                            {{casenum}}</a></td>
+                            <td>{{caseaddress}}</td>
+                            <td>{{casetype}}</td>
+                            <td>{{casestatus}}</td>
+                        </tr>
+                        {{/each}} {{else}}
+                        <tr>
+                            <td colspan="4">No Search Results Match Your Criteria.</td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+            <!--/div-->
+        </div>
+    </div>
+    </div>
+    {{/if}}
+</script>
+<!-- <div id="testiando"></div> -->
+<!-- END SUBMIT FORM search-->
+<!--Download csv file-->
+<script>
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {
+            type: "text/csv"
+        });
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+
+    function exportTableToCSV(filename) {
+        var csv = [];
+        var rows = document.getElementById("results").querySelectorAll("table tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [],
+                cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
+        }
+
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
+</script>
