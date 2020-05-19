@@ -97,6 +97,8 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file'], function(https,
             }
 
             if (params.addrs) {
+                params.addrs = params.addrs.toUpperCase();
+                log.audit('params.addrs:', 'Context parameters : ' + params.addrs);
 
                 srchCase.filters.push(search.createFilter({
                     name: "formulanumeric",
@@ -125,11 +127,51 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file'], function(https,
             }
 
             if (params.casedate) {
-
+                var date = params.casedate.substring(0, 10);
+                log.audit('date:', 'Context parameters : ' + date);
                 srchCase.filters.push(search.createFilter({
                     name: 'date',
                     operator: 'on',
-                    values: [params.casedate]
+                    values: [date]
+                }));
+            }
+
+            if (params.casedatefrom) {
+                var casedatefrom = params.casedatefrom.substring(0, 10);
+                log.audit('casedatefrom:', 'Context parameters : ' + casedatefrom);
+                srchCase.filters.push(search.createFilter({
+                    name: 'startdate',
+                    operator: 'onorafter',
+                    values: [casedatefrom]
+                }));
+
+            }
+            if (params.casedateto) {
+                var casedateto = params.casedateto.substring(0, 10);
+                log.audit('casedateto:', 'Context parameters : ' + casedateto);
+                srchCase.filters.push(search.createFilter({
+                    name: 'startdate',
+                    operator: 'onorbefore',
+                    values: [casedateto]
+                }));
+            }
+            if (params.hearingdatefrom) {
+                var hearingdatefrom = params.hearingdatefrom.substring(0, 10);
+                log.audit('hearingdatefrom:', 'Context parameters : ' + hearingdatefrom);
+                srchCase.filters.push(search.createFilter({
+                    name: 'custevent_gs_coo_case_dateofhearing',
+                    operator: 'onorafter',
+                    values: [hearingdatefrom]
+                }));
+
+            }
+            if (params.hearingdateto) {
+                var hearingdateto = params.hearingdateto.substring(0, 10);
+                log.audit('hearingdateto:', 'Context parameters : ' + hearingdateto);
+                srchCase.filters.push(search.createFilter({
+                    name: 'custevent_gs_coo_case_dateofhearing',
+                    operator: 'onorbefore',
+                    values: [hearingdateto]
                 }));
             }
 
@@ -198,8 +240,8 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file'], function(https,
             objData.hasresults = '';
             objData.cases = [];
         }
-        //var template = hb.compile(obj.getValue('custrecord_oscc_searchpage_template'));
-        log.audit('objData: ' + JSON.stringify(objData));
+
+        // log.audit('objData: ', JSON.stringify(objData));
         context.response.write(JSON.stringify(objData));
 
     }

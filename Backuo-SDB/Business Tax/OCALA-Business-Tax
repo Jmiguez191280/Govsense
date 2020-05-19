@@ -1,0 +1,124 @@
+<td>
+    <!-- Header -->
+    <section id="main-section" class="text-center" name="home">
+        <!-- Services Section -->
+        <div id="services-section" class="text-center">
+            <div class="container">
+                <div class="section-title center">
+                    <h2> Business Tax Receipt Search </h2>
+                    <div class="clearfix"></div>
+                    <p>Here are a few tips on searching... </p>
+                    <hr>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> You can search by a single field, or use multiple fields to narrow your results. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> Clicking the Search Button will provide a list of all Businesses that match your criteria. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> For text searches (e.g. Business Name & Address), you can type partial information if necessary. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> After clicking search, you can export a list of your results by clicking the Export CSV button. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-section" class="text-center">
+            <div class="container">
+                <div class="col-md-8 col-md-offset-2">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-number"> Business Number </label>
+                                    <input placeholder="LIC-1234" type="text" id="case-number" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="address"> Business Name </label>
+                                    <input placeholder="ACME" type="text" id="address" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-type"> Address </label>
+                                    <input placeholder="123 Main Street" type="text" id="case-type" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-status"> Business Status </label>
+                                    <input type="text" id="case-status" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="casedatefrom"> Issued Date </label>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            jQuery(function() {
+                                                jQuery('#datetimepicker1').datetimepicker();
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker2'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                  <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            jQuery(function() {
+                                                jQuery('#datetimepicker2').datetimepicker();
+                                            });
+                                        </script>
+                                    </div>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="formbutton" type="submit" class="btn btn-default"><i class="fa fa-fw fa-search"></i> Search </button>
+                        <div class="form-group">
+                            <div name="message" id="results-container" class="form-control">
+                                <h3>Search Results Will Display Here</h3>
+                            </div>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div id="success"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</td>

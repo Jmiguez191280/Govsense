@@ -1,0 +1,397 @@
+<td>
+    <section id="main-section" class="text-center" name="home">
+        <!-- Services Section -->
+        <div id="services-section" class="text-center">
+            <div class="container">
+                <div class="section-title center">
+                    <h2> Code Enforcement Case Search </h2>
+                    <div class="clearfix"></div>
+                    <p>Here are a few tips on searching... </p>
+                    <hr>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> You can search by a single field, or use multiple fields to narrow your results.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> Clicking the Search Button will provide a list of all Cases that match your criteria. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> For text searches (e.g. Case Number & Address), you can type partial information if necessary. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> After clicking search, you can export a list of your results by clicking the Export CSV button.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-section" class="text-center">
+            <div class="container">
+                <div class="col-md-8 col-md-offset-2">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="case-number"> Case Number </label>
+                                    <input type="text" id="case-number" class="form-control" required="required">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="address"> Address </label>
+                                    <input type="text" id="address" class="form-control">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="case-type"> Case Type </label>
+                                    <div id="case_types"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="case-status"> Case Status </label>
+                                    <div id="case_status"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!--<label for="casedatefrom"> Case Date (Range) </label>
+<input type="date" id="casedatefrom" name="casedatefrom" class="form-control2">
+<input type="date" id="casedateto" name="casedateto" class="form-control2">-->
+                                    <div>
+                                        <div class="form-group">
+                                            <label for="casedatefrom"> Case Date (Range)</label>
+                                            <div class="row">
+                                                <div>
+                                                    <div class="form-group">
+                                                        <div class='input-group date' id='datetimepicker1'>
+                                                            <input id="casedatefrom" type='text' class="form-control" />
+                                                            <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    jQuery(function() {
+                                                        jQuery('#datetimepicker1').datetimepicker();
+                                                    });
+                                                </script>
+                                            </div>
+                                            <div class="row">
+                                                <div>
+                                                    <div class="form-group">
+                                                        <div class='input-group date' id='datetimepicker2'>
+                                                            <input id="casedateto" type='text' class="form-control" />
+                                                            <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript">
+                                                    jQuery(function() {
+                                                        jQuery('#datetimepicker2').datetimepicker();
+                                                    });
+                                                </script>
+                                            </div>
+                                            <!-- <p class="help-block text-danger"></p>
+                                        </div> -->
+                                        </div>
+                                        <!-- <p class="help-block text-danger"></p> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <!--<label for="casedatefrom"> Case Date (Range) </label>
+<input type="date" id="casedatefrom" name="casedatefrom" class="form-control2">
+<input type="date" id="casedateto" name="casedateto" class="form-control2">-->
+                                        <div>
+                                            <div class="form-group">
+                                                <label for="casedatefrom"> Hearing Date (Range)</label>
+                                                <div class="row">
+                                                    <div>
+                                                        <div class="form-group">
+                                                            <div class='input-group date' id='datetimepicker3'>
+                                                                <input id="hearingdatefrom" type='text' class="form-control" />
+                                                                <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <script type="text/javascript">
+                                                        jQuery(function() {
+                                                            jQuery('#datetimepicker3').datetimepicker();
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <div class="row">
+                                                    <div>
+                                                        <div class="form-group">
+                                                            <div class='input-group date' id='datetimepicker4'>
+                                                                <input id="hearingdateto" type='text' class="form-control" />
+                                                                <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <script type="text/javascript">
+                                                        jQuery(function() {
+                                                            jQuery('#datetimepicker4').datetimepicker();
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <!-- <p class="help-block text-danger"></p> -->
+                                            </div>
+                                        </div>
+                                        <!-- <p class="help-block text-danger"></p> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="formbutton" type="" onclick="submitForm();" class="btn btn-default"><i class="fa fa-fw fa-search"></i> Search </button>
+                            <div class="form-group">
+                                <div name="message" id="results-container" class="form-control" style="height:auto !important;">
+                                    <h3>Search Results Will Display Here</h3>
+                                </div>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div id="success"></div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</td>
+
+<script>
+    jQuery.ajax({
+            method: "GET",
+            url: "/app/site/hosting/scriptlet.nl?script=218&deploy=1&compid=4778042&h=379475f8fbd1b336385a",
+            dataType: "json",
+            cache: false,
+            async: true
+
+        })
+        .done(function(msg) {
+            if (msg) {
+                debugger;
+                renderSelect(msg);
+            }
+        })
+
+    function renderSelect(obj) {
+        // console.log('obj',JSON.stringify(obj))
+
+        if (obj.caseTypes) {
+            var caseTypes = obj.caseTypes;
+            var types = '<select onchange="changetype();" id="case-type" class="form-control" >';
+            types += '<option value=""> </option>';
+            for (var i = 0; i < caseTypes.length; i++) {
+                types += '<option value="' + caseTypes[i].id + '">' + caseTypes[i].name + '</option>';
+            }
+            types += '</select>';
+            types += ' <p  id="pTypes" class="help-block text-danger"></p>';
+            $('#case_types').html(types)
+        }
+        if (obj.statusList) {
+            var statusList = obj.statusList;
+            var status = '<select onchange="changeStatus();" id="case-status" class="form-control" >';
+            status += '<option value=""> </option>';
+            for (var x = 0; x < statusList.length; x++) {
+                status += '<option value="' + statusList[x].id + '">' + statusList[x].name + '</option>';
+            }
+            status += '</select>';
+            status += ' <p id="pStatus" class="help-block text-danger"></p>'
+            $('#case_status').html(status);
+
+        }
+
+    }
+
+    function changeStatus() {
+        debugger;
+        jQuery('#pStatus').children().remove()
+    }
+
+    function changetype() {
+        jQuery('#pTypes').children().remove()
+    }
+</script>
+
+<!-- START SUBMIT FORM search -->
+<script>
+    function submitForm() {
+
+        var casenumber = document.getElementById('case-number').value;
+        var addrs = document.getElementById('address').value;
+        var casetype = jQuery('#case-type option:selected').val();
+        var casestatus = jQuery('#case-status option:selected').val();
+        // var casedate = document.getElementById('issuedDate').value;
+        var casedatefrom = document.getElementById('casedatefrom').value;
+        var casedateto = document.getElementById('casedateto').value;
+        var hearingdatefrom = document.getElementById('hearingdatefrom').value;
+        var hearingdateto = document.getElementById('hearingdateto').value;
+
+        if (casenumber) {
+            var objParams = {
+                h: '386d0b815585bdca834a',
+                script: "216",
+                deploy: "1",
+                compid: "4778042",
+                casenumber: casenumber,
+                addrs: addrs,
+                casestatus: casestatus,
+                casetype: casetype,
+                casedateto: casedateto,
+                casedatefrom: casedatefrom,
+                hearingdateto: hearingdateto,
+                hearingdatefrom: hearingdatefrom,
+            };
+            var params = JSON.stringify(objParams)
+
+            jQuery.ajax({
+                    method: "GET",
+                    url: "/app/site/hosting/scriptlet.nl?script=216&deploy=1&compid=4778042&h=386d0b815585bdca834a&parameters=" + params,
+                    dataType: "json",
+                    cache: false,
+                    async: true
+
+                })
+                .done(function(msg) {
+                    if (msg) {
+                        debugger;
+                        renderResult(msg);
+                    }
+                })
+        }
+        // if (casestatus == "") jQuery("#pStatus").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
+        // if (casetype == "") jQuery("#pTypes").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
+    }
+
+    function renderResult(data) {
+
+        var hasresults = [];
+        if (data) {
+
+            hasresults.push(data);
+            var results = Handlebars.compile($("#casesResults").html());
+            $("#results-container").html(results(data));
+        }
+    }
+</script>
+
+<script type="text/x-handlebars-template" id="casesResults">
+    {{log this}} {{#if this}} {{log cases}}
+
+    <div class="results_container">
+        <div class="row">
+
+            <!--div class="col-md-12"-->
+            <div class="table-responsive">
+                <table id="resultsTable" border="0" cellspacing="0" cellpadding="2" class="uir_list_filter_bar uir_list_top_button_bar" role="presentation">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button type="button" id="col" style="background-color:green;color:white;width:115px;height:40px;font-size:18px;" class="btn btn-secondary black-background white" onclick="exportTableToCSV('caseresults.csv')"><i class="fa fa-fw fa-file-excel-o"></i> Export
+                                            </button>
+                            </td>
+                            <td align="right" class="smalltextnolink">&nbsp;Total: {{cases.length}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" id="results">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Case Number</th>
+                            <th>Address</th>
+                            <th>Case Type</th>
+                            <th>Case Staus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if cases}} {{#each cases}}
+                        <tr>
+                            <td><a href="http://shopping.na3.netsuite.com/s.nl/c.4778042/it.I/id.5/.f?varid={{caseid}}">Case
+                                            {{casenum}}</a></td>
+                            <td>{{caseaddress}}</td>
+                            <td>{{casetype}}</td>
+                            <td>{{casestatus}}</td>
+                        </tr>
+                        {{/each}} {{else}}
+                        <tr>
+                            <td colspan="4">No Search Results Match Your Criteria.</td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+            <!--/div-->
+        </div>
+    </div>
+    </div>
+    {{/if}}
+</script>
+<!-- <div id="testiando"></div> -->
+<!-- END SUBMIT FORM search-->
+<!--Download csv file-->
+<script>
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {
+            type: "text/csv"
+        });
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+
+    function exportTableToCSV(filename) {
+        var csv = [];
+        var rows = document.getElementById("results").querySelectorAll("table tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [],
+                cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
+        }
+
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
+</script>

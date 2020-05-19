@@ -1,0 +1,90 @@
+<header class="text-center" name="home">
+    <!-- Services Section -->
+    <div style="padding-bottom:0;" id="services-section" class="text-center">
+        <div class="container">
+            <div class="section-title center">
+                <h2 style="color:#726f6f;"> Contact Us </h2>
+                <div class="clearfix"></div>
+                <p style="color:#726f6f;">The website you are viewing was created to help our citizen self-service intitiatives during the challenging COVID-19 times. </p>
+                <p style="color:#726f6f;">If you have feedback, concerns, or requests for more infomration, please fill out the form below.</p>
+                <hr>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+</header>
+
+<!-- Contact Section -->
+<div style="padding-top:0;" id="contact-section" class="text-center">
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <form name="sentMessage" id="contactForm" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-number"> First Name </label>
+                            <input placeholder="Jane" type="text" id="case-number" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-number"> Last Name </label>
+                            <input placeholder="Doe" type="text" id="case-number" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-number"> Company Name (if applicable)</label>
+                            <input type="text" id="case-number" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="address"> Email </label>
+                            <input type="text" id="address" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-type"> Phone Number </label>
+                            <input type="text" id="case-type" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-status"> Feedback Summary </label>
+                            <input placeholder="Short Description" type="text" id="case-status" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="casedatefrom"> Feedback Details </label>
+                            <textarea style="width:100%;" name="" id="" cols="30" rows="10"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div id="html_element"></div>
+                    <!-- Error Alert -->
+                    <div class="alert alert-error alert-danger alert-dismissible collapse" role="alert" id="recapchaalert">
+                        <strong>ERROR!&nbsp;</strong>reCAPTCHA verification failed. Please Try again.
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                    <br>
+                    <button type="submit" id="col" class="btn btn-primary black-background white">Submit</button>
+            </form>
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+            </script>
+            </div>
+            <div id="success"></div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
