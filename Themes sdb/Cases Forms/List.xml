@@ -1,0 +1,160 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<nsResponse>
+<record recordType="customlist" id="90" perm="4" fields="_eml_nkey_,_multibtnstate_,selectedtab,nsapiPI,nsapiSR,nsapiVF,nsapiFC,nsapiPS,nsapiVI,nsapiVD,nsapiPD,nsapiVL,nsapiRC,nsapiLI,nsapiLC,nsapiCT,nsbrowserenv,type,id,externalid,whence,customwhence,entryformquerystring,_csrf,name,publisherid,package,scriptid,id,owner,description,isorderedlabel,isordered,isordered,converttocustomrecord,isinactive,hierarchical,target">
+<_csrf>
+GLkeqOHkdVphcohbMb-uBGgn_v7M38bYXvDyYcPqpt8O63S74YDJBCUBDRt7htkqfM4ty6sWyewqxHKdCUZ6hAYVbWn6AMWr0XJgwj7BL4N5X6A3Ok_-tvrwscDXuWnRtymTVF5OnsamrsztiG7GvWOIZSBDDmmFHVSkO3m0LuQ=
+</_csrf>
+<_eml_nkey_>253562800</_eml_nkey_>
+<converttocustomrecord>F</converttocustomrecord>
+<entryformquerystring>id=90&e=T&ord=T&xml=t</entryformquerystring>
+<hierarchical>F</hierarchical>
+<id>90</id>
+<isinactive>F</isinactive>
+<isordered>T</isordered>
+<name>License Status List</name>
+<nsapiCT>1589388215341</nsapiCT>
+<owner>3</owner>
+<scriptid>customlistgs_coo_lisencestatuslist</scriptid>
+<type>custlist</type>
+<machine name="customvalue" type="edit" fields="scriptid,value,valueid,isinactive,parent">
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10922_4778042_sb1_421</scriptid>
+<value>Active</value>
+<valueid>1</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10923_4778042_sb1_780</scriptid>
+<value>Approved to Issue</value>
+<valueid>2</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10924_4778042_sb1_900</scriptid>
+<value>Closed</value>
+<valueid>3</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10925_4778042_sb1_453</scriptid>
+<value>Code Action</value>
+<valueid>4</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10926_4778042_sb1_631</scriptid>
+<value>Code Lien</value>
+<valueid>5</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10927_4778042_sb1_219</scriptid>
+<value>Conditional PE</value>
+<valueid>6</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10928_4778042_sb1_613</scriptid>
+<value>Denied</value>
+<valueid>7</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10929_4778042_sb1_948</scriptid>
+<value>Expansion Pending</value>
+<valueid>8</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10930_4778042_sb1_255</scriptid>
+<value>Expired</value>
+<valueid>9</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10931_4778042_sb1_438</scriptid>
+<value>Hold</value>
+<valueid>10</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10932_4778042_sb1_453</scriptid>
+<value>NSF</value>
+<valueid>11</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10933_4778042_sb1_100</scriptid>
+<value>Overdue</value>
+<valueid>12</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10934_4778042_sb1_930</scriptid>
+<value>Pending</value>
+<valueid>13</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10935_4778042_sb1_143</scriptid>
+<value>Permits Needed</value>
+<valueid>14</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10936_4778042_sb1_859</scriptid>
+<value>Relocated</value>
+<valueid>15</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10937_4778042_sb1_799</scriptid>
+<value>Renewal</value>
+<valueid>16</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10938_4778042_sb1_230</scriptid>
+<value>Revoked by CE</value>
+<valueid>17</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_10939_4778042_sb1_136</scriptid>
+<value>Sent to Code </value>
+<valueid>18</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_11694_4778042_sb1_992</scriptid>
+<value>In Review</value>
+<valueid>19</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_11695_4778042_sb1_509</scriptid>
+<value>Pending Inspection</value>
+<valueid>20</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_12074_4778042_sb1_502</scriptid>
+<value>Pending - Permit Change</value>
+<valueid>21</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_334308_4778042_256</scriptid>
+<value>Non Sufficient Funds (NSF)</value>
+<valueid>22</valueid>
+</line>
+<line>
+<isinactive>F</isinactive>
+<scriptid>val_335200_4778042_246</scriptid>
+<value>Void</value>
+<valueid>23</valueid>
+</line>
+</machine>
+</record>
+</nsResponse>

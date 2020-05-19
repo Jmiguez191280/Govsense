@@ -1,0 +1,250 @@
+<script>
+    function getUrlVars() {
+        debugger;
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(
+            window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+    var params = getUrlVars();
+    var myVar = params['varid'];
+    console.log('myVar---', myVar)
+    renderform(myVar);
+
+    function renderform(id) {
+        debugger;
+        jQuery.ajax({
+                method: "GET",
+                url: "/app/site/hosting/scriptlet.nl?script=222&deploy=1&compid=4778042&h=c683a5ee3328c1d3a440&id=" + id,
+                dataType: "json",
+                cache: false,
+                async: true
+
+            })
+            .done(function(msg) {
+                if (msg) {
+                    var hasresults = [];
+                    hasresults.push(msg);
+                    var results = Handlebars.compile($("#recordResults").html());
+                    $(".py-6").html(results(msg));
+                    renderResult(hasresults)
+                }
+            })
+    }
+
+    function renderResult(msg) {
+        console.log('Msg==', msg)
+    }
+</script>
+
+<script type="text/x-handlebars-template" id="recordResults">
+
+    <div class="py-5" style="">
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="list-group" style="">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black"> License Overview</a> <a href="#" class="list-group-item list-group-item-action">Business
+							Name:&nbsp; {{businessname}}</a> <a href="#" class="list-group-item list-group-item-action">License
+							Address:&nbsp; {{licenseaddress}}</a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">License Type:&nbsp;{{licensetype}}
+                            <br>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">License SubType:&nbsp;{{licensesubtype}}
+                            <br>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Site Visits
+                            <span class="badge badge-pill badge-primary badge-dark">{{#if
+								sitevisits}}<a href="#sitevisits" style="color: white;">{{sitevisits.length}}</a>{{else}}{{sitevisits.length}}{{/if}}
+						</span>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black">License Status and Critical
+							Dates</a> <a href="#" class="list-group-item list-group-item-action">Established
+							Date:&nbsp; {{establisheddate}}</a> <a href="#" class="list-group-item list-group-item-action">Application
+							Date:&nbsp; {{applicationdate}}</a> <a href="#" class="list-group-item list-group-item-action">Expiration
+							Date:&nbsp;{{expirationdate}}<br>
+						</a><a href="#" class="list-group-item list-group-item-action">State
+							License Number:&nbsp;{{statelicnumber}}<br>
+						</a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">License Status:&nbsp;{{licensestatus}}
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <iframe width="100%" height="400" src="{{maplinkadrs}}" scrolling="no" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if sitevisits}}
+    <div class="py-1" id="sitevisits" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="" style="font-size:18px;" contenteditable="true">Site Visits (*list of inspections)
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Date</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Officer</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each sitevisits}}
+                                <tr>
+                                    <th>{{date}}</th>
+                                    <td>{{officer}}</td>
+                                    <td>{{notes}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}} {{#if attachments}}
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 style="font-size:18px;" class="">Attachments</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Document Name</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Link to Document</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each attachments}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td><a href="{{url}}" target="_blank">{{name}}</a></td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</script>
+<td>
+    <div style="padding:150px 0 50px 0;" class="py-6" style=""></div>
+
+    <!-- <div style="padding:150px 0 50px 0;" class="py-5" style="">
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="list-group" style="">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black"> License Overview</a> <a href="#" class="list-group-item list-group-item-action">Business
+                Name:&nbsp; Ideal Image  of Florida LLC</a> <a href="#" class="list-group-item list-group-item-action">License
+                Address:&nbsp; 4701 SW COLLEGE RD ALL UNITS | 23894-000-02</a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">License Type:&nbsp;General Business<br>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">License SubType:&nbsp;MISC GEN BUS<br>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Site Visits
+                            <span class="badge badge-pill badge-primary badge-dark"><a href="#sitevisits" style="color: white;">2</a>
+              </span>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black">License Status and Critical
+                Dates</a> <a href="#" class="list-group-item list-group-item-action">Established
+                Date:&nbsp; 2/17/2010</a> <a href="#" class="list-group-item list-group-item-action">Application
+                Date:&nbsp; 2/17/2010</a> <a href="#" class="list-group-item list-group-item-action">Expiration
+                Date:&nbsp;9/30/2020<br>
+              </a><a href="#" class="list-group-item list-group-item-action">State
+                License Number:&nbsp;<br>
+              </a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">License Status:&nbsp;Active
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <iframe width="100%" height="400" src="https://maps.google.com/maps?q=4701%20SW%20COLLEGE%20RD%20ALL%20OCALA%20FL%20US&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed" scrolling="no" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-1" id="sitevisits" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 style="font-size:18px;" class="" contenteditable="true">Site Visits (*list of inspections)
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:100px;" class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Date</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Officer</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>11/18/2019</th>
+                                    <td>Anthony Ortiz</td>
+                                    <td>All fire and life safety equipment in compliance. Captain Ortiz</td>
+                                </tr>
+                                <tr>
+                                    <th>12/9/2019</th>
+                                    <td>Anthony Ortiz</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</td>
