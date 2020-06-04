@@ -1,4 +1,5 @@
 <header class="text-center" name="home">
+
     <!-- Services Section -->
     <div style="padding-bottom:0;" id="services-section" class="text-center">
         <div class="container">
@@ -14,15 +15,15 @@
     </div>
 </header>
 
-<!-- <script type="text/javascript">
-     var onloadCallback = function() {
-         grecaptcha.render('html_element', {
-             'sitekey': '6LfCP9UUAAAAAEdHml7mTVa63bDUzoMbvjlUkdHu',
-         });
+<script type="text/javascript">
+    var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+            'sitekey': '6LfCP9UUAAAAAEdHml7mTVa63bDUzoMbvjlUkdHu',
+        });
     };
-</script> -->
+</script>
 
-<!-- <script>
+<script>
     function validate() {
 
         var captchaSuccess = false;
@@ -35,7 +36,7 @@
         }
         return captchaSuccess;
     }
-</script> -->
+</script>
 
 <!-- Contact Section -->
 <div style="padding-top:0;" id="contact-section" class="text-center">
@@ -67,14 +68,14 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label style="color:#726f6f;" for="address"> Email </label>
-                            <input type="text" id="email" class="form-control" required="required">
+                            <input type="email" id="email" class="form-control" required="required">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label style="color:#726f6f;" for="case-type"> Phone Number </label>
-                            <input type="text" id="phone" class="form-control" required="required">
+                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" class="form-control" required="required">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -95,14 +96,14 @@
 
                     <div id="html_element"></div>
                     <!-- Error Alert -->
-                    <!-- <div class="alert alert-error alert-danger alert-dismissible collapse" role="alert" id="recapchaalert">
+                    <div class="alert alert-error alert-danger alert-dismissible collapse" role="alert" id="recapchaalert">
                         <strong>ERROR!&nbsp;</strong>reCAPTCHA verification failed. Please Try again.
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    </div> -->
+                    </div>
                     <br>
                     <button type="" id="col" onclick="submitForm();" class="btn btn-primary black-background white">Submit</button>
             </form>
-            <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer> -->
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
             </script>
             </div>
             <div id="success"></div>
@@ -114,6 +115,7 @@
 
 <script>
     function submitForm() {
+
         debugger;
         var firstname = document.getElementById('firtname').value;
         var lastname = document.getElementById('lastname').value;
@@ -123,7 +125,20 @@
         var feedbacksummary = document.getElementById('feedbacksummary').value;
         var fedbackdetails = document.getElementById('fedbackdetails').value;
 
-        if (firstname && lastname && companyname && email) {
+
+        function phonenumber(phone) {
+            var phone = document.getElementById('phone').value;
+            var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            if (phone.match(phoneno)) {
+                return true;
+            } else {
+                alert("Phone format should be xxx-xxx-xxxx");
+                return false;
+            }
+        }
+
+
+        if (firstname && lastname && companyname && email /*&& validate()*/ ) {
             var objParams = {
                 compid: "4778042",
                 h: "9d08904860907c914a85",
