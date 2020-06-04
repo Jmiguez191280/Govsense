@@ -66,17 +66,23 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file', './handlebars-v4
                     ["mainline", "is", "T"]
                 ],
                 columns: [search.createColumn({
-                    name: "tranid",
-                    sort: search.Sort.ASC
-                }), search.createColumn({
-                    name: "custrecord_gs_spatiallocation_full_addr",
-                    join: "custbody_gs_lic_spatiallocation",
-                    label: "Address"
-                }), search.createColumn({
-                    name: "custbody_gs_coo_liensestatus",
-                    sort: search.Sort.ASC,
-                    label: "License Staus"
-                })]
+                        name: "tranid",
+                        sort: search.Sort.ASC
+                    }), search.createColumn({
+                        name: "custrecord_gs_spatiallocation_full_addr",
+                        join: "custbody_gs_lic_spatiallocation",
+                        label: "Address"
+                    }), search.createColumn({
+                        name: "custbody_gs_coo_liensestatus",
+                        sort: search.Sort.ASC,
+                        label: "License Staus"
+                    }),
+                    search.createColumn({
+                        name: "entity",
+                        sort: search.Sort.ASC,
+                        label: "Business Name"
+                    })
+                ]
             });
 
             if (params.licensenumber) {
@@ -154,7 +160,8 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file', './handlebars-v4
                         name: 'custrecord_gs_spatiallocation_full_addr',
                         join: 'custbody_gs_lic_spatiallocation'
                     }),
-                    licensestatus: result.getText('custbody_gs_coo_liensestatus')
+                    licensestatus: result.getText('custbody_gs_coo_liensestatus'),
+                    businessname: result.getText('entity')
                 });
                 return true;
 
@@ -192,7 +199,7 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file', './handlebars-v4
 
         }
 
-
+        log.audit('showSearchPage', 'objData: ' + JSON.stringify(objData));
         context.response.write(JSON.stringify(objData));
 
     }

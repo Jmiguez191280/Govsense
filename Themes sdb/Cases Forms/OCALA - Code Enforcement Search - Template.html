@@ -1,3 +1,9 @@
+<style>
+    .glyphicon.glyphicon-time {
+        display: none!important;
+    }
+</style>
+<!--OCALA - Code Enforcement Search - Template-->
 <td>
     <section id="main-section" class="text-center" name="home">
         <!-- Services Section -->
@@ -40,7 +46,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="case-number"> Case Number </label>
-                                    <input type="text" id="case-number" class="form-control" required="required">
+                                    <input type="text" id="case-number" class="form-control">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -111,7 +117,7 @@
                                         <!-- <p class="help-block text-danger"></p> -->
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="">
                                     <div class="form-group">
                                         <!--<label for="casedatefrom"> Case Date (Range) </label>
 <input type="date" id="casedatefrom" name="casedatefrom" class="form-control2">
@@ -245,40 +251,40 @@
         var hearingdatefrom = document.getElementById('hearingdatefrom').value;
         var hearingdateto = document.getElementById('hearingdateto').value;
 
-        if (casenumber) {
-            var objParams = {
-                h: '386d0b815585bdca834a',
-                script: "216",
-                deploy: "1",
-                compid: "4778042",
-                casenumber: casenumber,
-                addrs: addrs,
-                casestatus: casestatus,
-                casetype: casetype,
-                casedateto: casedateto,
-                casedatefrom: casedatefrom,
-                hearingdateto: hearingdateto,
-                hearingdatefrom: hearingdatefrom,
-            };
-            var params = JSON.stringify(objParams)
+        // if (casenumber) {
+        var objParams = {
+            h: '386d0b815585bdca834a',
+            script: "216",
+            deploy: "1",
+            compid: "4778042",
+            casenumber: casenumber,
+            addrs: addrs,
+            casestatus: casestatus,
+            casetype: casetype,
+            casedateto: casedateto,
+            casedatefrom: casedatefrom,
+            hearingdateto: hearingdateto,
+            hearingdatefrom: hearingdatefrom,
+        };
+        var params = JSON.stringify(objParams)
 
-            jQuery.ajax({
-                    method: "GET",
-                    url: "/app/site/hosting/scriptlet.nl?script=216&deploy=1&compid=4778042&h=386d0b815585bdca834a&parameters=" + params,
-                    dataType: "json",
-                    cache: false,
-                    async: true
+        jQuery.ajax({
+                method: "GET",
+                url: "/app/site/hosting/scriptlet.nl?script=216&deploy=1&compid=4778042&h=386d0b815585bdca834a&parameters=" + params,
+                dataType: "json",
+                cache: false,
+                async: true
 
-                })
-                .done(function(msg) {
-                    if (msg) {
-                        debugger;
-                        renderResult(msg);
-                    }
-                })
-        }
-        // if (casestatus == "") jQuery("#pStatus").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
-        // if (casetype == "") jQuery("#pTypes").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
+            })
+            .done(function(msg) {
+                if (msg) {
+                    debugger;
+                    renderResult(msg);
+                }
+            })
+            //   }
+            // if (casestatus == "") jQuery("#pStatus").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
+            // if (casetype == "") jQuery("#pTypes").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
     }
 
     function renderResult(data) {
@@ -289,7 +295,11 @@
             hasresults.push(data);
             var results = Handlebars.compile($("#casesResults").html());
             $("#results-container").html(results(data));
+
         }
+        $('html, body').animate({
+            scrollTop: jQuery("#formbutton").offset().top
+        }, 1000);
     }
 </script>
 
@@ -319,7 +329,7 @@
                             <th>Case Number</th>
                             <th>Address</th>
                             <th>Case Type</th>
-                            <th>Case Staus</th>
+                            <th>Case Status</th>
                         </tr>
                     </thead>
                     <tbody>
