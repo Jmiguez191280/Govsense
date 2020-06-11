@@ -62,10 +62,19 @@
                             <div>
                                 <div class="form-group">
                                     <label for="case-type"> Address </label>
-                                    <input id="address" placeholder="123 Main Street" type="text" id="case-type" class="form-control">
+                                    <input id="address" placeholder="123 Main Street" type="text" class="form-control">
                                     <!-- <p class="help-block text-danger"></p> -->
                                 </div>
                             </div>
+
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-type"> Parcel </label>
+                                    <input id="parcel" placeholder="" type="text" class="form-control">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+
                             <div>
                                 <div class="form-group">
                                     <label for="case-status"> Business Status </label>
@@ -177,6 +186,7 @@
 
         var licensenumber = document.getElementById('licensenumber').value;
         var addrs = document.getElementById('address').value;
+        var parcel = document.getElementById('parcel').value;
         var businessname = document.getElementById('businessname').value
         var licensestatus = jQuery('#licensestatus option:selected').val();
         // var casedate = document.getElementById('issuedDate').value;
@@ -192,6 +202,7 @@
             deploy: "1",
             licensenumber: licensenumber,
             addrs: addrs,
+            parcel: parcel,
             licensestatus: licensestatus,
             businessname: businessname,
             licensedatefrom: licensedatefrom,
