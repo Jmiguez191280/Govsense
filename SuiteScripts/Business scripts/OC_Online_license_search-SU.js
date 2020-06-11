@@ -100,7 +100,7 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file', './handlebars-v4
                 srchLicense.filters.push(search.createFilter({
                     name: "formulanumeric",
                     operator: "equalto",
-                    formula: "case when TO_CHAR({entity}) LIKE '%" + String(params.businessname) + "%' then 1 else 0 end",
+                    formula: "case when UPPER(TO_CHAR({entity})) LIKE '%" + String(params.businessname.toUpperCase()) + "%' then 1 else 0 end",
                     values: 1,
                 }));
             }
@@ -111,6 +111,16 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file', './handlebars-v4
                     name: "formulanumeric",
                     operator: "equalto",
                     formula: "case when {custbody_gs_lic_spatiallocation.custrecord_gs_spatiallocation_full_addr} LIKE '%" + String(params.addrs) + "%' then 1 else 0 end",
+                    values: 1,
+                }));
+            }
+
+            if (params.parcel) {
+
+                srchLicense.filters.push(search.createFilter({
+                    name: "formulanumeric",
+                    operator: "equalto",
+                    formula: "case when {custbody_gs_lic_spatiallocation.custrecord_gs_spatiallocation_parcel} LIKE '%" + String(params.parcel) + "%' then 1 else 0 end",
                     values: 1,
                 }));
             }

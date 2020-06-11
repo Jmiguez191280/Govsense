@@ -108,6 +108,16 @@ define(['N/https', 'N/record', 'N/email', 'N/search', 'N/file'], function(https,
                 }));
             }
 
+            if (params.parcel) {
+
+                srchCase.filters.push(search.createFilter({
+                    name: "formulanumeric",
+                    operator: "equalto",
+                    formula: "case when {custevent_gs_ce_primarylocation.custrecord_gs_spatiallocation_parcel} LIKE '%" + String(params.parcel) + "%' then 1 else 0 end",
+                    values: 1,
+                }));
+            }
+
             if (params.casetype) {
 
                 srchCase.filters.push(search.createFilter({
