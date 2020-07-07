@@ -1,0 +1,160 @@
+<div class="container" id="myWizard">
+
+    <h3>Wizard</h3>
+
+    <hr>
+    <script>
+        function prevStep() {
+            jQuery('[href=#' + 'step1' + ']').tab('show');
+        }
+
+        function prevStep3() {
+            jQuery('[href=#' + 'step2' + ']').tab('show');
+        }
+    </script>
+    <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 20%;">
+            Step 1 of 3
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav nav-pills">
+                <li id="stp_1" class="active"><a href="#step1" data-toggle="tab" data-step="1">Step 1</a></li>
+                <li><a id="stp_2" href="#step2" data-toggle="tab" data-step="2">Step 2</a></li>
+                <li><a id="stp_3" href="#step3" data-toggle="tab" data-step="3">Step 3</a></li>
+                <!-- <li><a href="#step4" data-toggle="tab" data-step="4">Step 4</a></li>
+                <li><a href="#step5" data-toggle="tab" data-step="5">Step 5</a></li> -->
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="step1">
+
+            <div class="well">
+
+
+                <label>Business Tax Receipt Renewal ID</label>
+                <input id="invid" class="form-control input-lg">
+
+            </div>
+
+            <a style="color:blue;" class="next" href="#">Continue ></a>
+        </div>
+        <div class="tab-pane fade" id="step2">
+            <div id="2step" class="well">
+
+                <div id="results"></div>
+
+            </div>
+            <a id="prev1" class="prev" style="color:blue;">
+                < Previus </a>
+                    <a style="color:blue;" class="next" href="#">Continue > </a>
+        </div>
+        <div class="tab-pane fade" id="step3">
+            <div class="well">
+            </div>
+            <a id="prev3" class="prev" style="color:blue;">
+                < Previus </a>
+
+        </div>
+
+
+    </div>
+    <script>
+        function myClick(myRadio) {
+
+            var invId = jQuery("#invoice").text().trim()
+            var customer = jQuery("#customerId").text().trim()
+            var currentValue = myRadio.value;
+            if (currentValue == 'ok') {
+                window.location.href = 'https://checkout.paystand.com/v4/?publishableKey=gn7vb9t26qwlp96wgcbc00uj&viewCheckout=portal-medium&module=ns_openInvoices&extCustomerId=' + customer + '&externalCss=https:%2F%2Fwww.paystand.com%2Fhubfs%2Fcustom_css%2Fcityofocala%2Focala.css&logoUrl=https:%2F%2Fwww.paystand.com%2Fhubfs%2Fcustom_css%2Fcityofocala%2FOcala_Logo_150px.png&drawerType=open_displaced_toggle'
+            } else if (currentValue == 'noOk') {
+                $('[href=#' + 'step1' + ']').tab('show');
+            } else if (currentValue == 'contact') {
+                window.location.href = 'https://growthmanagement.ocalafl.org/contact-us.html';
+            }
+        }
+
+
+        $(document).ready(function() {
+
+            $('.next').click(function() {
+                debugger;
+                var nextId = $(this).parents('.tab-pane').next().attr("id");
+                $('[href=#' + nextId + ']').tab('show');
+                return false;
+            })
+            $('.prev').click(function() {
+                debugger;
+                var nextId = $(this).parents('.tab-pane').attr("id");
+                if (nextId.indexOf('2') != -1) $('[href=#' + 'step1' + ']').tab('show');
+                if (nextId.indexOf('3') != -1) $('[href=#' + 'step2' + ']').tab('show');
+
+                return false;
+            })
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+                //update progress
+
+                var step = $(e.target).data('step');
+
+                if (parseInt(step) == 2) serachLicense(e)
+
+                var percent = (parseInt(step) / 3) * 100;
+                $('.progress-bar').css({
+                    width: percent + '%'
+                });
+                $('.progress-bar').text("Step " + step + " of 3");
+                //e.relatedTarget // previous tab
+            })
+
+            function serachLicense(e) {
+                var invoiceID = jQuery('#invid').val().trim();
+                jQuery("#results").html('');
+                e.preventDefault();
+                if (invoiceID) {
+
+                    jQuery.ajax({
+                            method: "GET",
+                            url: "/app/site/hosting/scriptlet.nl?script=243&deploy=1&compid=4778042&h=d58a55c5f38e1a06f31d&invId=" + invoiceID,
+                            dataType: "json",
+                            cache: false,
+                            async: true
+
+                        })
+                        .done(function(msg) {
+                            if (msg.invoice) {
+                                debugger;
+                                var resultsStr = '<p style="display:none" id="customerId">' + msg.customerId + '</p>';
+                                resultsStr += '<div id="licInfo"><p id="name">Business Name : ' + msg.name + '</p>';
+                                resultsStr += '<p id="name">Business License : ' + msg.license + '</p>';
+                                resultsStr += '<p id="location">Location : ' + msg.location + '</p>';
+                                resultsStr += '<p id="invoice">Renewal ID : ' + msg.invoice + '</p></div><br>';
+                                resultsStr += '<div id="radiosBtns"><p>Please select one of the following options :</p>'
+                                resultsStr += '<input  type="radio" id="yesOk" name="gender" onclick="myClick(this);" value="ok">'
+                                resultsStr += '<label for="yesOk" style="float:none;">Yes,this is my business.</label><br>'
+                                resultsStr += '<input  type="radio" id="noOk" name="gender" onclick="myClick(this);" value="noOk">'
+                                resultsStr += '<label for="noOk" style="float:none;">No,this is not my businnes. i would like to try again.</label><br>'
+                                resultsStr += '<input  type="radio" id="contact" name="gender" onclick="myClick(this);" value="contact">'
+                                resultsStr += '<label for="contact" style="float:none;">Iwould like to contact Growth Management Departament</label></div>'
+                                jQuery("#results").html(resultsStr);
+                                // renderResult(msg)
+                            } else {
+                                jQuery("#results").html('<p>There are no results for this Renewal ID. Try again.</p>');
+                            }
+                        })
+                }
+
+            }
+
+
+            $('.first').click(function() {
+                debugger;
+                $('#myWizard a:first').tab('show')
+
+            })
+
+
+        });
+    </script>
