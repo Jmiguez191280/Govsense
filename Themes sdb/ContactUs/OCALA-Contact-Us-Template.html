@@ -136,7 +136,9 @@
         if(data){
             data=JSON.parse(data);
             document.getElementById('companyname').value=data.busName;
+            document.getElementById("companyname").readOnly = true;
             document.getElementById('feedbacksummary').value='License Renewal : '+ data.busLicense;
+            document.getElementById("feedbacksummary").readOnly = true;
         }
     }
     function submitForm() {
