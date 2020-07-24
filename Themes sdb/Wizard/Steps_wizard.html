@@ -305,9 +305,11 @@
                             var name = msg.name || '';
                             var license = msg.license || '';
                             var location = msg.location || '';
+                            var type= msg.type || '';
                             var resultsStr = '<p style="display:none" id="customerId">' + msg.customerId + '</p>';
                             resultsStr += '<div id="licInfo"><p>Business Name : <span id="BusinessName">' + name + '</span></p>';
-                            resultsStr += '<p>Business License :<span id="name"> ' + license + '</span></p>';
+                            resultsStr += '<p>License Number :<span id="name"> ' + license + '</span></p>';
+                            resultsStr += '<p>License Type :<span id="name"> ' + type + '</span></p>';
                             resultsStr += '<p>Location : <span id="location">  ' + location + '</span></p>';
                             resultsStr += '<p >Renewal ID : <span id="invoice"> ' + msg.invoice + ' </span></p></div><br>';
                             resultsStr += '<div id="radiosBtns"><p>Please select one of the following options :</p>'
