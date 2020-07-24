@@ -21,13 +21,14 @@ define(['N/https', 'N/record', 'N/search'], function (https, record, search) {
             if (licenceceRcd) {
                 objLicence.businessName = licenceceRcd.getText('entity');
                 objLicence.location = licenceceRcd.getText('custbody_gs_lic_spatiallocation');
+                objLicence.type=licenceceRcd.getText('custbody_gs_license_type');
 
             }
 
         } catch (e) {
             log.error('lookUpLicenses', 'ERROR : ' + e);
         }
-        log.audit('searchLicence', 'objLicence: ' + JSON.stringify(objLicence));
+        log.debug('searchLicence', 'objLicence------: ' + JSON.stringify(objLicence));
         return objLicence;
     }
 
@@ -52,8 +53,10 @@ define(['N/https', 'N/record', 'N/search'], function (https, record, search) {
 
                     var obj = lookUpLicenses(licenseId);
                     objData.name = obj.businessName;
+                    objData.type = obj.type;
                     objData.license = license;
                     objData.location = obj.location;
+                    
                     
                 }
                 objData.customerId = customerId;
@@ -63,9 +66,9 @@ define(['N/https', 'N/record', 'N/search'], function (https, record, search) {
         } catch (e) {
             log.audit('Error', 'searchLicence: ' + JSON.stringify(e));
         }
-
+        log.audit('onRequestFxn', 'Context parameters : ' + JSON.stringify(objData));
         // context.response.write(JSON.stringify(objData));
-       return objData
+       return objData;
     }
 
     function onRequestFxn(context) {
@@ -75,7 +78,7 @@ define(['N/https', 'N/record', 'N/search'], function (https, record, search) {
             var params = context.request.parameters;
             log.audit('onRequestFxn', 'Context parameters : ' + JSON.stringify(params));
             var invId = params.invId;
-            log.audit('onRequestFxn', 'invId : ' + invId);
+           
             var invoiceRcd = record.load({
                 type: 'invoice',
                 id: invId
@@ -89,7 +92,7 @@ define(['N/https', 'N/record', 'N/search'], function (https, record, search) {
             var amauntDue = invoiceRcd.getValue('amountremainingtotalbox');
             log.audit('invoiceRcd', invoiceRcd);
         var objRespose;
-        log.audit('parseFloat(amauntDue)', parseFloat(amauntDue));
+      
             if (dateCompare < date && parseFloat(amauntDue) > 0) objRespose=searchLicence(context, invoiceRcd, invId);
             if (dateCompare > date) message = 'The Renewal ID you entered is not valid for this fiscal year.'
             if (parseFloat(amauntDue) == 0) message ='The Renewal ID you entered is not valid for this fiscal year or has already been paid. Please refer to your records or contact the City (link to Contact Us page) with any additional questions'
