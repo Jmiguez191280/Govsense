@@ -134,10 +134,17 @@
 
         var data=localStorage.getItem('jsonData');
         if(data){
+            console.log('data',data)
             data=JSON.parse(data);
+            var dataPrec='';
+            if(data.busLicense){
+                document.getElementById('feedbacksummary').value='License Renewal : '+ data.busLicense;
+            }else{
+                document.getElementById('feedbacksummary').value='Citation : '+ data.renewalId;
+            }
             document.getElementById('companyname').value=data.busName;
             document.getElementById("companyname").readOnly = true;
-            document.getElementById('feedbacksummary').value='License Renewal : '+ data.busLicense;
+            // document.getElementById('feedbacksummary').value='License Renewal : '+ data.busLicense;
             document.getElementById("feedbacksummary").readOnly = true;
         }
     }

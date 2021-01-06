@@ -1,0 +1,257 @@
+<script>
+    function getUrlVars() {
+        debugger;
+        var vars = [],
+            hash;
+        var hashes = window.location.href.slice(
+            window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+    var params = getUrlVars();
+    var myVar = params['varid'];
+    console.log('myVar---', myVar)
+    renderform(myVar);
+
+    function renderform(id) {
+        debugger;
+        jQuery.ajax({
+                method: "GET",
+                url: "/app/site/hosting/scriptlet.nl?script=217&deploy=1&compid=4778042&h=53d12f20992a30777477&id=" + id,
+                dataType: "json",
+                cache: false,
+                async: true
+
+            })
+            .done(function(msg) {
+                if (msg) {
+                    var hasresults = [];
+                    hasresults.push(msg);
+                    var results = Handlebars.compile($("#recordResults").html());
+                    $(".py-6").html(results(msg));
+                    renderResult(hasresults)
+                }
+            })
+    }
+
+    function renderResult(msg) {
+        console.log('Msg==', msg)
+    }
+</script>
+
+<script type="text/x-handlebars-template" id="recordResults">
+    <div class="py-5">
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="list-group" >
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black"> Case Overview</a> <a href="#" class="list-group-item list-group-item-action">Case
+							Number:&nbsp; {{casenumber}}</a> <a href="#" class="list-group-item list-group-item-action">Case
+							Address:&nbsp; {{caseaddress}}</a> <a href="#" class="list-group-item list-group-item-action">Case
+							Type:&nbsp; {{casetype}}</a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Case SubType:&nbsp;{{casesubtype}}
+                            <br>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Violations on Case<span class="badge badge-pill badge-primary badge-dark">{{#if
+								violations}}<a href="#violations" style="color: white;">{{violations.length}}</a>{{else}}{{violations.length}}{{/if}}
+						</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Site Visits
+                            <span class="badge badge-pill badge-primary badge-dark">{{#if
+								sitevisits}}<a href="#sitevisits" style="color: white;">{{sitevisits.length}}</a>{{else}}{{sitevisits.length}}{{/if}}
+						</span>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black">Case Status and Critical
+							Dates</a> <a href="#" class="list-group-item list-group-item-action">Case
+							Open:&nbsp; {{caseopen}}</a> <a href="#" class="list-group-item list-group-item-action">Next
+							Hearing:&nbsp; {{nexthearing}}</a> <a href="#" class="list-group-item list-group-item-action">Last Site
+							Visit:&nbsp;{{lastsitevisit}}<br>
+						</a><a href="#" class="list-group-item list-group-item-action">Case
+							Closed: Not Closed<br>
+						</a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Case Status:&nbsp;{{casestatus}}
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Case Officer:&nbsp;{{caseofficer}}
+                            <i class="fa fa-user fa-fw"></i>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <iframe width="100%" height="400" src="{{maplinkadrs}}" scrolling="no" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if violations}}
+    <div class="py-1" id="violations">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="">Case Violations</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <table class="table table-bordered 1">
+                            <thead class="thead-dark">
+                                <tr style="background-color: black">
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">#</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Violation Type</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;" contenteditable="true">Requested Correction Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each violations}}
+                                <tr>
+                                    <th>{{ctr}}</th>
+                                    <td>{{type}}</td>
+                                    <td>{{req_date}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}} {{#if sitevisits}}
+    <div class="py-1" id="sitevisits" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="" contenteditable="true">Case Site Visits</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <table class="table table-bordered 2">
+                            <thead class="thead-dark">
+                                <tr style="background-color: black">
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Date</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Officer</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each sitevisits}}
+                                <tr>
+                                    <th>{{date}}</th>
+                                    <td>{{officer}}</td>
+                                    <td>{{notes}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}} {{#if attachments}}
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="">Attachments</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="">
+                        <table class="table table-bordered 3">
+                            <thead class="thead-dark">
+                                <tr style="background-color: black">
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Document Name</th>
+                                    <th style="color:#fff;border-color: #454d55;background-color:#343a40;">Link to Document</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {{#each attachments}}
+                                <tr>
+                                    <td>{{name}}</td>
+                                    <td><a href="{{url}}" target="_blank">{{name}}</a></td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+</script>
+
+<td>
+    <div class="py-6" style="padding:150px 0;">
+
+        <!-- <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="list-group" style="">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black"> Case Overview</a> <a href="#" class="list-group-item list-group-item-action">Case
+                Number:&nbsp; COM16_1951</a> <a href="#" class="list-group-item list-group-item-action">Case
+                Address:&nbsp; </a> <a href="#" class="list-group-item list-group-item-action">Case
+                Type:&nbsp; Alarm Fees</a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Case SubType:&nbsp;COM16-1951 | ALARM FEES<br>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Violations on Case<span class="badge badge-pill badge-primary badge-dark">0
+              </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Site Visits
+                            <span class="badge badge-pill badge-primary badge-dark">0
+              </span>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" style="background-color: black">Case Status and Critical
+                Dates</a> <a href="#" class="list-group-item list-group-item-action">Case
+                Open:&nbsp; 11/4/2016</a> <a href="#" class="list-group-item list-group-item-action">Next
+                Hearing:&nbsp; </a> <a href="#" class="list-group-item list-group-item-action">Last Site
+                Visit:&nbsp;<br>
+              </a><a href="#" class="list-group-item list-group-item-action">Case
+                Closed: Not Closed<br>
+              </a>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Case Status:&nbsp;Active
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">Case Officer:&nbsp;
+                            <i class="fa fa-user fa-fw"></i>
+                        </li>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <iframe width="100%" height="400" src="https://maps.google.com/maps?q=OCALA%20FL%20US&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed" scrolling="no" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</td>
