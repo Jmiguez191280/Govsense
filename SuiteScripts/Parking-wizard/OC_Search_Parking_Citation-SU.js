@@ -103,6 +103,7 @@ define(['N/https', 'N/record', 'N/search', 'N/file'], function (https, record, s
             //     type: 'customrecord_gs_pkng_parkingcitation',
             //     id: rcdid
             // });
+            //test
             var parkingcitationId = getCitationRcdForId(rcdid);
             log.debug('parkingcitationId', parkingcitationId);
             if (!parkingcitationId || parkingcitationId.length == 0) {
