@@ -86,16 +86,19 @@ define(['N/https', 'N/record', 'N/search'], function (https, record, search) {
 
             if(invoiceRcd){
             var dateCompare = '06/01/' + new Date().getFullYear();
+              log.audit('dateCompare', dateCompare);
             dateCompare = Date.parse(dateCompare);
             var date = invoiceRcd.getValue('trandate');
+              log.audit('trandate', date);
             date = Date.parse(date)
             var amauntDue = invoiceRcd.getValue('amountremainingtotalbox');
             log.audit('invoiceRcd', invoiceRcd);
         var objRespose;
       
-            if (dateCompare < date && parseFloat(amauntDue) > 0) objRespose=searchLicence(context, invoiceRcd, invId);
-            if (dateCompare > date) message = 'The Renewal ID you entered is not valid for this fiscal year.'
+            // if (dateCompare < date && parseFloat(amauntDue) > 0) objRespose=searchLicence(context, invoiceRcd, invId);
+            // if (dateCompare > date) message = 'The Renewal ID you entered is not valid for this fiscal year.'
             if (parseFloat(amauntDue) == 0) message ='The Renewal ID you entered is not valid for this fiscal year or has already been paid. Please refer to your records or contact the City (link to Contact Us page) with any additional questions'
+            if (parseFloat(amauntDue) > 0)objRespose=searchLicence(context, invoiceRcd, invId);
             }
              if(objRespose){
                 log.audit('invoiceRcd', JSON.stringify(objRespose));

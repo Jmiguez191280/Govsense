@@ -394,25 +394,30 @@
 
         word-wrap: break-word;
     }
-    @media (min-width: 768px){
+
+    @media (min-width: 768px) {
         #pictureModal .modal-dialog {
-        width:800px;
+            width: 800px;
         }
-        #pictureModal img{
+
+        #pictureModal img {
             width: 350px !important;
         }
     }
 
     div#pictureModal .row:first-of-type {
-        margin-bottom: 34px;
+        margin-bottom: 34px !important;
     }
-    @media(max-width:768px){
-        #pictureModal img{
+
+    @media(max-width:768px) {
+        #pictureModal img {
             width: 300px !important;
             height: 240px !important;
         }
-        #pictureModal #image0, #pictureModal #image3 {
-            margin-bottom:34px
+
+        #pictureModal #image0,
+        #pictureModal #image3 {
+            margin-bottom: 34px
         }
     }
 </style>
@@ -427,7 +432,7 @@
                 <h2> Parking Enforcement Citation Payments </h2>
                 <div class="clearfix"></div>
                 <p style="color:white; font-size:16px">Thank you for choosing to pay Parking Citation online. You can
-                    pay your ticket in 3 easy steps </p>
+                    pay your Citation in 3 easy steps </p>
                 <hr>
             </div>
 
@@ -444,9 +449,9 @@
                         </div>
                         <div class='wrapper-right'>
                             <h2>Parking <br /> Citation</h2>
-                            <p>PV-1320</p>
+                            <p>PV-0502</p>
                             <br>
-                            <p>PIN: 4C432</p>
+                            <p>PIN: 0426C</p>
                         </div>
                     </div>
                     <div class='parking-body'>
@@ -458,7 +463,7 @@
                             </div>
                             <div class='div-tr'>
                                 <div class='div_td_left'>Plate Issuance State:</div>
-                                <div class='div_td_right'>Florida</div>
+                                <div class='div_td_right'>FLORIDA</div>
                             </div>
                             <div class='div-tr'>
                                 <div class='div_td_left'>Vehicle Manufacturer:</div>
@@ -474,15 +479,15 @@
                             </div>
                             <div class='div-tr'>
                                 <div class='div_td_left'>Violation Area:</div>
-                                <div class='div_td_right'>Downtown</div>
+                                <div class='div_td_right'>DOWNTOWN</div>
                             </div>
                             <div class='div-tr'>
                                 <div class='div_td_left'>Date / Time Observed: </div>
-                                <div class='div_td_right'>Oct 22, 2020 11:17:00 AM </div>
+                                <div class='div_td_right'>AUG 27, 2020 11:07:00 AM </div>
                             </div>
                             <div class='div-tr'>
                                 <div class='div_td_left'>Officer: </div>
-                                <div class='div_td_right'>Heather Stine </div>
+                                <div class='div_td_right'>STINE </div>
                             </div>
                             <div class='div-tr'>
                                 <div class='div_td_left'>Citation Notes: </div>
@@ -631,6 +636,7 @@
                     <h4 class="modal-title">View Pictures</h4>
                 </div>
                 <div class="modal-body">
+                    <div id="notImages"></div>
                     <div class="row">
                         <div id="image0" class="col-md-6"></div>
                         <div id="image1" class="col-md-6"></div>
@@ -892,7 +898,7 @@
                             resultsStr += '<p>Vehicle Manufacturer :<span id="manufacturer"> ' + manufacturer + '</span></p>';
                             resultsStr += '<p>Vehicle Style :<span id="style"> ' + style + '</span></p>';
                             resultsStr += '<p>Color : <span id="color">  ' + color + '</span></p><br>';
-                            resultsStr += '<p>View Citation Pictures :<a style="color:#337ab7 !important" data-toggle="modal" data-toggle="modal" data-target="#pictureModal">HERE</a></p>';
+                            resultsStr += '<p>View Citation Pictures :<a style="color:#337ab7 !important;cursor:pointer;" data-toggle="modal" data-toggle="modal" data-target="#pictureModal">HERE</a></p>';
                             resultsStr += ' <label style="font-size: 14px;" for="email">If you would like to receive information regarding your citation, please enter your email address below.</label>'
                             resultsStr += '<input  id="email" type="email"><span id="error_mail"></span></div><br>';
                             resultsStr += '<div id="radiosBtns"><p>Please select one of the following options :</p>'
@@ -903,7 +909,7 @@
                             resultsStr += '<input  type="radio" id="contact" name="gender"  value="contact">'
                             resultsStr += '<label for="contact" style="float:none;">I would like to contact the Parking Enforcement Division.</label></div>';
 
-                            if (msg.imgs && msg.imgs.length > 0 )imgsPopUp(msg.imgs);
+                            if (msg.imgs) imgsPopUp(msg.imgs);
 
                             jQuery('[href=#step2]').tab('show');
                             jQuery("#results").html(resultsStr);
@@ -918,10 +924,21 @@
             return hasreslt;
         }
 
-        function imgsPopUp(images) {       
-            for (var x = 0; x < images.length; x++) {
-                jQuery("#image" + x).html('<img  src='+images[x]+' width="250" height="300">');
-                console.log('img x',images[x])
+        function imgsPopUp(images) {
+            jQuery("#notImages").empty();
+            emptyDivImg();
+            if (images.length > 0) {
+                for (var x = 0; x < images.length; x++) {
+                    jQuery("#image" + x).html('<img  src=' + images[x] + ' width="250" height="300">');
+                    console.log('img x', images[x])
+                }
+            } else {
+                jQuery("#notImages").html('At this moment there are no pictures to show.');
+            }
+        }
+        function emptyDivImg() {
+            for (var x = 0; x < 4; x++) {
+                jQuery("#image" + x).empty();
             }
         }
 
