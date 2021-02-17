@@ -1,0 +1,229 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Favicons
+    ================================================== -->
+<link rel="shortcut icon" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/img/apple-touch-icon-114x114.png">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/css/bootstrap.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800&display=swap" rel="stylesheet">
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+<!-- Stylesheet
+    ================================================== -->
+<link rel="stylesheet" type="text/css" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/css/style.css">
+<link rel="stylesheet" type="text/css" href="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/css/prettyPhoto.css">
+
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="https://4778042.app.netsuite.com/c.4778042/site/CityOfOcala/js/modernizr.custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<style>
+    @font-face {
+        font-family: 'Glyphicons Halflings';
+        src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot');
+        src: url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.woff') format('woff'), url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('https://netdna.bootstrapcdn.com/bootstrap/3.0.0/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+    }
+    
+    bootstrap-datetimepicker-widget.dropdown-menu {
+        border: 1px solid #34495e;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 10px 0 0 0;
+        padding: 0;
+        min-width: 300px;
+        max-width: 100%;
+        width: auto;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu.bottom:before,
+    .bootstrap-datetimepicker-widget.dropdown-menu.bottom:after {
+        display: none;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td,
+    .bootstrap-datetimepicker-widget.dropdown-menu table th {
+        border-radius: 0;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.old,
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.new {
+        color: #fff;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.today:before {
+        border-bottom-color: red;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.active,
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.active:hover,
+    .bootstrap-datetimepicker-widget.dropdown-menu table td span.active {
+        background-color: red;
+        text-shadow: none;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.active.today:before,
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.active:hover.today:before,
+    .bootstrap-datetimepicker-widget.dropdown-menu table td span.active.today:before {
+        border-bottom-color: #fff;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table th {
+        height: 40px;
+        padding: 0;
+        width: 40px;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table th.picker-switch {
+        width: auto;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table tr:first-of-type th {
+        border-bottom: 1px solid #34495e;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td.day {
+        height: 32px;
+        line-height: 32px;
+        padding: 0;
+        width: auto;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu table td span {
+        border-radius: 0;
+        height: 77px;
+        line-height: 77px;
+        margin: 0;
+        width: 25%;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .datepicker-months tbody tr td,
+    .bootstrap-datetimepicker-widget.dropdown-menu .datepicker-years tbody tr td,
+    .bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td {
+        padding: 0;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td {
+        height: 27px;
+        line-height: 27px;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td span {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 46px;
+        line-height: 46px !important;
+        padding: 0;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .datepicker-decades tbody tr td span:not(.decade) {
+        display: none;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td {
+        padding: 0;
+        width: 30%;
+        height: 20px;
+        line-height: 20px;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td:nth-child(2) {
+        width: 10%;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td a,
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td span,
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td button {
+        border: none;
+        border-radius: 0;
+        height: 56px;
+        line-height: 56px;
+        padding: 0;
+        width: 100%;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td span {
+        color: #333;
+        margin-top: -1px;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td button {
+        background-color: #fff;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .timepicker-picker table td button:hover {
+        background-color: #eee;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .picker-switch table td {
+        border-top: 1px solid #34495e;
+        text-align: center !important;
+    }
+    
+    .bootstrap-datetimepicker-widget.dropdown-menu .picker-switch table td a,
+    .bootstrap-datetimepicker-widget.dropdown-menu .picker-switch table td span {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+        width: 100%;
+        text-align: center !important;
+    }
+    
+    .todayText:before {
+        content: "Today's Date";
+        text-align: center !important;
+    }
+    
+    #contact-section label {
+        width: 100%;
+        display: block;
+        text-align: left;
+    }
+</style>

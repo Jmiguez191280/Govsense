@@ -1,0 +1,349 @@
+<style>
+    .glyphicon.glyphicon-time {
+        display: none!important;
+    }
+</style>
+<td>
+
+    <!--OCALA-Business-Tax-->
+    <!-- Header -->
+    <section id="main-section" class="text-center" name="home">
+        <!-- Services Section -->
+        <div id="services-section" class="text-center">
+            <div class="container">
+                <div class="section-title center">
+                    <h2> Business Tax Receipt Search </h2>
+                    <div class="clearfix"></div>
+                    <p>Here are a few tips on searching... </p>
+                    <hr>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> You can search by a single field, or use multiple fields to narrow your results. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> Clicking the Search Button will provide a list of all Businesses that match your criteria. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> For text searches (e.g. Business Name & Address), you can type partial information if necessary. </p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 service">
+                        <i class="fa fa-check-circle"></i>
+                        <p> After clicking search, you can export a list of your results by clicking the Export CSV button. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-section" class="text-center">
+            <div class="container">
+                <div class="col-md-8 col-md-offset-2">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-number"> Business Number </label>
+                                    <input id="licensenumber" placeholder="LIC-1234" type="text" id="case-number" class="form-control">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="address"> Business Name </label>
+                                    <input id="businessname" placeholder="ACME" type="text" id="address" class="form-control">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-type"> Address </label>
+                                    <input id="address" placeholder="123 Main Street" type="text" class="form-control">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-type"> Parcel </label>
+                                    <input id="parcel" placeholder="" type="text" class="form-control">
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="form-group">
+                                    <label for="case-status"> Business Status </label>
+                                    <div id="Business"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="casedatefrom"> Issued Date </label>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker1'>
+                                                    <input id="licensedatefrom" type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            jQuery(function() {
+                                                jQuery('#datetimepicker1').datetimepicker();
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="row">
+                                        <div>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker2'>
+                                                    <input id="licensedateto" type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                      <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            jQuery(function() {
+                                                jQuery('#datetimepicker2').datetimepicker();
+                                            });
+                                        </script>
+                                    </div>
+                                    <!-- <p class="help-block text-danger"></p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <button id="formbutton" type="" onclick="submitForm();" class="btn btn-default"><i class="fa fa-fw fa-search"></i> Search </button>
+                        <div class="form-group">
+                            <div name="message" id="results-container" style="height:auto !important;" class="form-control">
+                                <h3>Search Results Will Display Here</h3>
+                            </div>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div id="success"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</td>
+
+
+<!--SCRIPTS-->
+<script>
+    jQuery.ajax({
+            method: "GET",
+            url: "/app/site/hosting/scriptlet.nl?script=219&deploy=1&compid=4778042&h=70f22904bc9a4c8181f0",
+            dataType: "json",
+            cache: false,
+            async: true
+
+        })
+        .done(function(msg) {
+            if (msg) {
+                debugger;
+                renderSelect(msg);
+            }
+        })
+
+    function renderSelect(arr) {
+        // console.log('obj',JSON.stringify(obj))
+
+        if (arr) {
+
+            var Business = '<select onchange="changeStatus();" id="licensestatus" class="form-control" >';
+            Business += '<option value=""> </option>';
+            for (var i = 0; i < arr.length; i++) {
+                Business += '<option value="' + arr[i].id + '">' + arr[i].name + '</option>';
+            }
+            Business += '</select>';
+            Business += ' <p  id="pBusiness" class="help-block text-danger"></p>';
+            $('#Business').html(Business)
+        }
+
+
+    }
+
+    function changeStatus() {
+        debugger;
+        jQuery('#pBusiness').children().remove()
+    }
+</script>
+
+<!-- START SUBMIT FORM search -->
+<script>
+    function submitForm() {
+
+        var licensenumber = document.getElementById('licensenumber').value;
+        var addrs = document.getElementById('address').value;
+        var parcel = document.getElementById('parcel').value;
+        var businessname = document.getElementById('businessname').value
+        var licensestatus = jQuery('#licensestatus option:selected').val();
+        // var casedate = document.getElementById('issuedDate').value;
+        var licensedatefrom = document.getElementById('licensedatefrom').value;
+        var licensedateto = document.getElementById('licensedateto').value;
+
+
+        // if (licensenumber) {
+        var objParams = {
+            compid: "4778042",
+            h: "9d08904860907c914a85",
+            script: "207",
+            deploy: "1",
+            licensenumber: licensenumber,
+            addrs: addrs,
+            parcel: parcel,
+            licensestatus: licensestatus,
+            businessname: businessname,
+            licensedatefrom: licensedatefrom,
+            licensedateto: licensedateto,
+
+        }
+
+        var params = JSON.stringify(objParams)
+
+        jQuery.ajax({
+                method: "GET",
+                url: "/app/site/hosting/scriptlet.nl?script=220&deploy=1&compid=4778042&h=be9ea8c9d26aed68e427&parameters=" + params,
+                dataType: "json",
+                cache: false,
+                async: true
+
+            })
+            .done(function(msg) {
+                if (msg) {
+                    debugger;
+                    renderResult(msg);
+                }
+            })
+            //   }
+            // if (licensestatus == "") jQuery("#pBusiness").html('<ul role="alert"><li>This is required<!-- data-validator-required-message to override --></li></ul></p>')
+
+    }
+
+    function renderResult(data) {
+
+        var hasresults = [];
+        if (data) {
+            debugger;
+            hasresults.push(data);
+            var results = Handlebars.compile($("#businessResults").html());
+            $("#results-container").html(results(data));
+
+        }
+        $('html, body').animate({
+            scrollTop: jQuery("#formbutton").offset().top
+        }, 1000);
+    }
+</script>
+
+<script type="text/x-handlebars-template" id="businessResults">
+    {{#if hasresults}}
+    <div class="results_container">
+        <div class="row">
+            <!--div class="col-md-12"-->
+            <div class="table-responsive">
+                <table id="resultsTable" border="0" cellspacing="0" cellpadding="2" class="uir_list_filter_bar uir_list_top_button_bar" role="presentation">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button type="button" id="col" style="background-color:green;color:white;width:115px;height:40px;font-size:18px;" class="btn btn-secondary black-background white" onclick="exportTableToCSV('license_results.csv')"><i class="fa fa-fw fa-file-excel-o"></i> Export
+										</button>
+                            </td>
+                            <td align="right" class="smalltextnolink">&nbsp;Total: {{licenses.length}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" id="results">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Number</th>
+                            <th>Address</th>
+                            <th>Business Status</th>
+                            <th>Business Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if licenses}} {{#each licenses}}
+                        <tr>
+                            <td><a href="http://shopping.na3.netsuite.com/s.nl/c.4778042/it.I/id.4/.f?varid={{licenseid}}">License
+										{{licensenum}}</a></td>
+                            <td>{{licenseaddress}}</td>
+                            <td>{{licensestatus}}</td>
+                            <td>{{businessname}}</td>
+                        </tr>
+                        {{/each}} {{else}}
+                        <tr>
+                            <td colspan="4">No Search Results Match Your Criteria.</td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+            </div>
+            <!--/div-->
+        </div>
+    </div>
+    </div>
+    {{/if}}
+</script>
+<!-- <div id="testiando"></div> -->
+<!-- END SUBMIT FORM search-->
+<!--Download csv file-->
+<script>
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {
+            type: "text/csv"
+        });
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+
+    function exportTableToCSV(filename) {
+        var csv = [];
+        var rows = document.getElementById("results").querySelectorAll("table tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [],
+                cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
+        }
+
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
+</script>

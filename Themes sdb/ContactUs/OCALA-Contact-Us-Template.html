@@ -1,0 +1,212 @@
+<!--OCALA-Contact-Us-Template-->
+<header class="text-center" name="home">
+    <style>
+        #recapchaalert {
+            visibility: initial!important;
+            margin-top: 40px;
+        }
+    </style>
+    <!-- Services Section -->
+    <div style="padding-bottom:0;" id="services-section" class="text-center">
+        <div class="container">
+            <div class="section-title center">
+                <h2 style="color:#726f6f;"> Contact Us </h2>
+                <div class="clearfix"></div>
+                <p style="color:#726f6f;">The website you are viewing was created to help our citizen self-service intitiatives during the challenging COVID-19 times. </p>
+                <p style="color:#726f6f;">If you have feedback, concerns, or requests for more infomration, please fill out the form below.</p>
+                <hr>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+</header>
+
+<script type="text/javascript">
+    var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+            'sitekey': '6Lea1wAVAAAAAA20HaKWQMKKjsNeuCC45anRhfmf',
+        });
+    };
+</script>
+
+<script>
+    jQuery(document).ready(function(){
+        fillFields();
+    })
+    function validate() {
+        debugger;
+        var captchaSuccess = false;
+        var captchaResponse = jQuery('#g-recaptcha-response').val();
+        console.log('validate', 'captchaResponse : ' + captchaResponse);
+        if (captchaResponse != "") {
+            captchaSuccess = true;
+        } else {
+            jQuery('#recapchaalert').show();
+        }
+        return captchaSuccess;
+    }
+</script>
+
+<!-- Contact Section -->
+<div style="padding-top:0;" id="contact-section" class="text-center">
+    <div id="contact" class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <form name="sentMessage" id="contactForm">
+                <div class="row">
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-number"> First Name </label>
+                            <input placeholder="Jane" type="text" id="firtname" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-number"> Last Name </label>
+                            <input placeholder="Doe" type="text" id="lastname" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-number"> Company Name (if applicable)</label>
+                            <input type="text" id="companyname" class="form-control">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="address"> Email </label>
+                            <input type="email" id="email" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-type"> Phone Number </label>
+                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="phone" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="case-status"> Feedback Summary </label>
+                            <input placeholder="Short Description" type="text" id="feedbacksummary" class="form-control" required="required">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label style="color:#726f6f;" for="casedatefrom"> Feedback Details </label>
+                            <textarea style="width:100%;" name="" id="fedbackdetails" cols="30" rows="10"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div id="html_element"></div>
+                   
+                    <br>
+                    <button type="" id="col" onclick="submitForm();" class="btn btn-primary black-background white">Submit</button>
+                    <br>
+                    <div class="alert alert-error alert-danger alert-dismissible collapse" role="alert" id="recapchaalert">
+                        <strong>ERROR!&nbsp;</strong>reCAPTCHA verification failed. Please Try again.
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+
+            </form>
+            <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+            </script>
+            </div>
+
+            <div id="success"></div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+</div>
+
+<script>
+
+    function fillFields(){
+
+        var data=localStorage.getItem('jsonData');
+        if(data){
+            console.log('data',data)
+            data=JSON.parse(data);
+            var dataPrec='';
+            if(data.busLicense){
+                document.getElementById('feedbacksummary').value='License Renewal : '+ data.busLicense;
+            }else{
+                document.getElementById('feedbacksummary').value='Citation : '+ data.renewalId;
+            }
+            document.getElementById('companyname').value=data.busName;
+            document.getElementById("companyname").readOnly = true;
+            // document.getElementById('feedbacksummary').value='License Renewal : '+ data.busLicense;
+            document.getElementById("feedbacksummary").readOnly = true;
+        }
+    }
+    function submitForm() {
+        var captcha = validate();
+        console.log('valid--', captcha)
+        debugger;
+        var firstname = document.getElementById('firtname').value;
+        var lastname = document.getElementById('lastname').value;
+        var companyname = document.getElementById('companyname').value
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+       
+        var fedbackdetails = document.getElementById('fedbackdetails').value;
+
+
+        function phonenumber(phone) {
+            var phone = document.getElementById('phone').value;
+            var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            if (phone.match(phoneno)) {
+                return true;
+            } else {
+                alert("Phone format should be xxx-xxx-xxxx");
+                return false;
+            }
+        }
+
+
+        if (firstname && lastname && companyname && email && captcha) {
+            var objParams = {
+                compid: "4778042",
+                h: "9d08904860907c914a85",
+                script: "207",
+                deploy: "1",
+                firstname: firstname,
+                lastname: lastname,
+                compname: companyname,
+                email: email,
+                phone: phone,
+                feedbacksumm: feedbacksummary,
+                feedbackdetails: fedbackdetails,
+
+            }
+
+            var params = JSON.stringify(objParams)
+
+            jQuery.ajax({
+                    method: "POST",
+                    url: "/app/site/hosting/scriptlet.nl?script=221&deploy=1&compid=4778042&h=99e2b85571a246fd1051&parameters=" + params,
+                    dataType: "json",
+                    cache: false,
+                    async: false
+
+                })
+                .done(function(msg) {
+                    if (msg) {
+                        console.log(msg)
+                        var thank = '<div  class="container"><div class="row"><div class="col-md-12 pb-1"><h1 class="mb-3 pt-5">Thank You.</h1></div></div></div>'
+                        jQuery('#contact').html(thank);
+                    }
+                })
+        }
+
+    }
+</script>
